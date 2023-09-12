@@ -4,3 +4,10 @@
 
 ## 도메인 적용 확인
 - http://localhost:8080/{도메인}/test.do
+
+## sample 도메인
+- 현재 sample 도메인이 service layer 적옹되어 있으니 참조
+
+## 로그
+- @Slf4j, log.info("test = {}", "hello world")
+  
