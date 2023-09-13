@@ -64,24 +64,12 @@
             <version>1.7.25</version>
         </dependency>
 
-
-
-
-        <!--히카리 풀-->
+        <!--HikariCP-->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>2.4.3</version>
         </dependency>
-
-
-
-
-
-
-
-
-
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -93,6 +81,14 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--AssertJ-->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.22.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
