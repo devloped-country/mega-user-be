@@ -1,43 +1,45 @@
 package com.mega.config.database;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Properties;
 
 public class JDBCUtils {
 
-    static {
-        try {
-            Properties props = new Properties();
+    private static DataSource dataSource;
 
-            // jdbc.properties 파일을 클래스패스에서 읽음
+    public static DataSource getDataSource() {
+        if (dataSource == null) {
+            HikariConfig config = new HikariConfig();
+
+            Properties properties = new Properties();
             try (InputStream input = JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties")) {
-                props.load(input);
-                String driverClassName = props.getProperty("jdbc.driver");
-                Class.forName(driverClassName); // 드라이버 클래스 로드
+                properties.load(input);
+
+                config.setDriverClassName(properties.getProperty("jdbc.driver"));
+                config.setJdbcUrl(properties.getProperty("jdbc.url"));
+                config.setUsername(properties.getProperty("jdbc.user"));
+                config.setPassword(properties.getProperty("jdbc.password"));
+
+                config.setMaximumPoolSize(100); // TODO: 2023-09-12
+                config.setAutoCommit(true);
+                config.addDataSourceProperty("cachePrepStmts", "true");
+                config.addDataSourceProperty("prepStmtCacheSize", "250");
+                config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+
+                dataSource = new HikariDataSource(config);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
-
-    public static Connection getConnection() {
-        Connection conn = null;
-        Properties props = new Properties();
-
-        try (InputStream input = JDBCUtils.class.getClassLoader().getResourceAsStream("jdbc.properties")) {
-            props.load(input);
-            String url = props.getProperty("jdbc.url");
-            String user = props.getProperty("jdbc.user");
-            String pass = props.getProperty("jdbc.password");
-
-            conn = DriverManager.getConnection(url, user, pass);
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
-
-        return conn;
+        return dataSource;
     }
 
     public static void close(Connection conn, PreparedStatement pstmt) {
@@ -54,23 +56,6 @@ public class JDBCUtils {
             if (rs != null) rs.close();
             if (pstmt != null) pstmt.close();
             if (conn != null) conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // 트랜잭션 처리
-    public static void commit(Connection conn) {
-        try {
-            conn.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void rollback(Connection conn) {
-        try {
-            conn.rollback();
         } catch (Exception e) {
             e.printStackTrace();
         }

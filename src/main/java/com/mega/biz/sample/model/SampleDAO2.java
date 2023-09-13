@@ -1,6 +1,6 @@
 package com.mega.biz.sample.model;
 
-import com.mega.config.database.JDBCUtilsHikariCP;
+import com.mega.config.database.JDBCUtils;
 import com.mega.biz.sample.model.dto.SampleDTO;
 
 import javax.sql.DataSource;
@@ -18,11 +18,9 @@ public class SampleDAO2 {
     private ResultSet rs = null;
 
     public void insertUser(SampleDTO sampleDTO) {
-//        Connection conn = null;
-//        PreparedStatement pstmt = null;
 
         try {
-            DataSource dataSource = JDBCUtilsHikariCP.getDataSource();
+            DataSource dataSource = JDBCUtils.getDataSource();
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SampleQuery.USER_INSERT.getQuery());
 
@@ -36,7 +34,7 @@ public class SampleDAO2 {
             e.printStackTrace();
         } finally {
             // ResultSet이 없을 때 close
-            JDBCUtilsHikariCP.close(conn, pstmt);
+            JDBCUtils.close(conn, pstmt);
         }
     }
 
@@ -44,7 +42,7 @@ public class SampleDAO2 {
         List<SampleDTO> userList = new ArrayList<>();
 
         try {
-            DataSource dataSource = JDBCUtilsHikariCP.getDataSource();
+            DataSource dataSource = JDBCUtils.getDataSource();
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(SampleQuery.USER_LIST.getQuery());
 
@@ -61,7 +59,7 @@ public class SampleDAO2 {
             e.printStackTrace();
         } finally {
             // ResultSet이 있을 때 close
-            JDBCUtilsHikariCP.close(conn, pstmt, rs);
+            JDBCUtils.close(conn, pstmt, rs);
         }
         return userList;
     }
