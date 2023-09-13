@@ -31,20 +31,25 @@ public class AttendanceDispatcherServlet extends HttpServlet {
 
         Controller ctrl = handlerMapping.getController(path);
 
-        String viewName = ctrl.handleRequest(request, response);
-        String view = null;
-
-        if (!viewName.contains(".do")) {
-            if (viewName.equals("index")) {
-                view = viewName + ".jsp";
-            } else {
-                view = viewResolver.getView(viewName);
-            }
+        if (ctrl == null) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errors/error.jsp");
+            dispatcher.forward(request, response);
         } else {
-            view = viewName;
-        }
+            String viewName = ctrl.handleRequest(request, response);
+            String view = null;
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-        dispatcher.forward(request, response);
+            if (!viewName.contains(".do")) {
+                if (viewName.equals("index")) {
+                    view = viewName + ".jsp";
+                } else {
+                    view = viewResolver.getView(viewName);
+                }
+            } else {
+                view = viewName;
+            }
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(view);
+            dispatcher.forward(request, response);
+        }
     }
 }
