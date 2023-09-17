@@ -24,7 +24,7 @@ public class DispatcherServletSample extends HttpServlet {
 
         Controller ctrl = handlerMapping.getController(path);
 
-        String viewName = ctrl.handleRequest(request, response);
+        String viewName = (String) ctrl.handleRequest(request, response);
         String view = null;
 
         if (!viewName.contains(".do")) {

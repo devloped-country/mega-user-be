@@ -1,10 +1,15 @@
 package com.mega.biz.qr;
 
+import com.google.gson.Gson;
+import com.mega.biz.qr.exception.QrException;
+import com.mega.biz.qr.exception.ReAuthException;
+import com.mega.biz.qr.model.dto.QrDTO;
 import com.mega.common.controller.Controller;
 import com.mega.common.controller.HandlerMapping;
 import com.mega.common.controller.ViewResolver;
 
-import javax.servlet.RequestDispatcher;
+import com.mega.common.error.ErrorCode;
+import com.mega.common.error.ErrorStatus;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,41 +20,57 @@ import java.io.IOException;
 @WebServlet("/qr/*")
 public class QrDispatcherServlet extends HttpServlet {
 
-    private HandlerMapping handlerMapping;
-    private ViewResolver viewResolver;
+  private HandlerMapping handlerMapping;
+  private ViewResolver viewResolver;
 
-    public void init() throws ServletException {
-        handlerMapping = new QrHandlerMapping();
-        viewResolver = new ViewResolver();
-        viewResolver.setPrefix("/WEB-INF/view/qr/");
+  private static final int QR_QUERY_STRING_INDEX = 1;
+
+  public void init() throws ServletException {
+    handlerMapping = new QrHandlerMapping();
+    viewResolver = new ViewResolver();
+    viewResolver.setPrefix("/WEB-INF/view/qr/");
+  }
+
+  @Override
+  protected void service(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    String uri = request.getRequestURI();
+    String[] qrString = request.getQueryString().split("=");
+    String qr = qrString[QR_QUERY_STRING_INDEX];
+
+    String path = uri.substring(uri.lastIndexOf("/"));
+    Controller ctrl = handlerMapping.getController(path);
+    Gson gson = new Gson();
+
+    if (ctrl == null) {
+      response.setStatus(404);
+      response.getWriter().write("");
     }
 
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String uri = request.getRequestURI();
-        String path = uri.substring(uri.lastIndexOf("/"));
+    request.setAttribute("qr", qr);
 
-        Controller ctrl = handlerMapping.getController(path);
+    try {
+      QrDTO qrDTO = (QrDTO) ctrl.handleRequest(request, response);
+      String json = gson.toJson(qrDTO);
 
-        if (ctrl == null) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errors/error.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            String viewName = ctrl.handleRequest(request, response);
-            String view = null;
+      response.setStatus(200);
+      response.getWriter().write(json);
+    } catch (QrException e) {
+      e.printStackTrace();
+      response.setStatus(401);
 
-            if (!viewName.contains(".do")) {
-                if (viewName.equals("index")) {
-                    view = viewName + ".jsp";
-                } else {
-                    view = viewResolver.getView(viewName);
-                }
-            } else {
-                view = viewName;
-            }
+      ErrorStatus errorStatus = new ErrorStatus(ErrorCode.ERROR_CODE_FIRST.getErrorCode());
+      String json = gson.toJson(errorStatus);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-            dispatcher.forward(request, response);
-        }
+      response.getWriter().write(json);
+    } catch (ReAuthException e) {
+      e.printStackTrace();
+      response.setStatus(401);
+
+      ErrorStatus errorStatus = new ErrorStatus(ErrorCode.ERROR_CODE_SECOND.getErrorCode());
+      String json = gson.toJson(errorStatus);
+
+      response.getWriter().write(json);
     }
+  }
 }
