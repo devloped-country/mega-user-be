@@ -14,6 +14,7 @@ public class CharacterEncodingFilter extends HttpFilter implements Filter {
         ServletContext context = request.getServletContext();
         String encoding = context.getInitParameter("encoding");
         request.setCharacterEncoding(encoding);
+        response.setContentType("application/json; charset=UTF-8");
 
         chain.doFilter(request, response);
     }

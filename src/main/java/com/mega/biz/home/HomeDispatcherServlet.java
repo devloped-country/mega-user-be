@@ -35,7 +35,7 @@ public class HomeDispatcherServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/errors/error.jsp");
             dispatcher.forward(request, response);
         } else {
-            String viewName = ctrl.handleRequest(request, response);
+            String viewName = (String) ctrl.handleRequest(request, response);
             String view = null;
 
             if (!viewName.contains(".do")) {
