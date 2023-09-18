@@ -60,8 +60,8 @@ public class CurriculumDAO {
                 curriculumDTO.setId(rs.getLong("ID"));
                 curriculumDTO.setSubject(rs.getString("SUBJECT"));
                 curriculumDTO.setTime(rs.getInt("TIME"));
-                curriculumDTO.setStartDate(rs.getDate("START_DATE"));
-                curriculumDTO.setEndDate(rs.getDate("END_DATE"));
+                curriculumDTO.setStartDate(rs.getDate("START_DATE").toLocalDate());
+                curriculumDTO.setEndDate(rs.getDate("END_DATE").toLocalDate());
 
                 curriculumDTOList.add(curriculumDTO);
             }
