@@ -24,6 +24,7 @@ public class CurriculumController extends HttpServlet {
         List<CurriculumWithDetailDTO> allCurriculumWithDetail = service.getAllCurriculumWithDetail();
         String result = gson.toJson(allCurriculumWithDetail);
 
+        response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().write(result);
     }
 }
