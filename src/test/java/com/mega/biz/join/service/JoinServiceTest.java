@@ -13,7 +13,7 @@ class JoinServiceTest {
     void test01() {
         UserDTO userDTO = new UserDTO("dcwang2@naver.com", "1234", "찬현", "01000000000", 1L, "1234");
 
-        boolean i = service.insertUser(userDTO);
+        boolean i = service.saveUser(userDTO);
         System.out.println("i = " + i);
     }
 

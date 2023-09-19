@@ -29,8 +29,6 @@ public class EncryptUtils {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
 
-//            System.out.println("PWD + SALT 적용 전 : " + pwd + salt);
-
             md.update((pwd + salt).getBytes());
             byte[] pwdSalt = md.digest();
 
@@ -40,7 +38,6 @@ public class EncryptUtils {
             }
 
             result = sb.toString();
-//            System.out.println("PWD + SALT 적용 후 : " + result);
 
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);

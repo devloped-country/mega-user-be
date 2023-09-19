@@ -31,7 +31,7 @@ public class UserDuplicateCheckController extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write("OK");
         } else {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("NO");
         }
     }

@@ -11,7 +11,7 @@ public class JoinService {
     private final EncryptUtils encrypt = new EncryptUtils();
 
 
-    public boolean insertUser(UserDTO userDTO) {
+    public boolean saveUser(UserDTO userDTO) {
         String salt = encrypt.getSalt();
         userDTO.setSalt(salt);
 

@@ -4,17 +4,16 @@ import com.google.gson.Gson;
 import com.mega.biz.join.model.dto.UserDTO;
 import com.mega.biz.join.service.JoinService;
 import com.mega.common.controller.ControllerUtils;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
+@Slf4j
 @WebServlet("/join")
 public class JoinController extends HttpServlet {
 
@@ -27,14 +26,16 @@ public class JoinController extends HttpServlet {
 
         Gson gson = new Gson();
         UserDTO userDTO = gson.fromJson(body, UserDTO.class);
-        boolean flag = service.insertUser(userDTO);
+        boolean flag = service.saveUser(userDTO);
 
         if (flag) {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write("OK");
+            log.info("{}", "success");
         } else {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("NO");
+            log.info("{}", "fail");
         }
     }
 }
