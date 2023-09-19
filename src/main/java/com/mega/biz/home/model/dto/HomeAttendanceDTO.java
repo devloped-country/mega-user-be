@@ -1,16 +1,17 @@
 package com.mega.biz.home.model.dto;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class HomeAttendanceDTO {
-  private Date startDate;
+  private Timestamp startDate;
   private int stat;
 
-  public Date getStartDate() {
+  public Timestamp getStartDate() {
     return startDate;
   }
 
-  public void setStartDate(Date startDate) {
+  public void setStartDate(Timestamp startDate) {
     this.startDate = startDate;
   }
 

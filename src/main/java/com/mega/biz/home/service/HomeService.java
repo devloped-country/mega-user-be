@@ -8,8 +8,7 @@ public class HomeService {
 
   HomeDAO dao = new HomeDAO();
 
-  public ArrayList<HomeAttendanceDTO> getAttendanceStat(String name) {
-    ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = dao.selectAttendnaceStat(name);
-    return homeAttendanceListDTO;
+  public ArrayList<HomeAttendanceDTO> getAttendanceStat(String name, String year, String month) {
+    return dao.selectAttendnaceStat(name, year, month);
   }
 }

@@ -6,6 +6,8 @@ import com.mega.biz.home.service.HomeService;
 import com.mega.common.controller.Controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,9 +24,23 @@ public class HomeController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String name = request.getHeader("userName");
-    System.out.println(name);
-    ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = service.getAttendanceStat(name);
+    String[] parts = request.getQueryString().split("&");
+    String name = null;
+    String year = null;
+    String month = null;
+
+    for(String part : parts) {
+      String[] queries = part.split("=");
+      if(queries[0].equals("name")) {
+        name = queries[1];
+      } else if(queries[0].equals("year")) {
+        year = queries[1];
+      } else if(queries[0].equals("month")) {
+        month = queries[1];
+      }
+    }
+
+    ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = service.getAttendanceStat(name, year, month);
     String result = gson.toJson(homeAttendanceListDTO);
 
     response.setStatus(200);
