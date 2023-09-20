@@ -2,6 +2,7 @@ package com.mega.biz.join.service;
 
 import com.mega.biz.join.model.JoinDAO;
 import com.mega.biz.join.model.dto.UserDTO;
+import com.mega.biz.join.model.dto.UserDTOv;
 import com.mega.common.encrypt.EncryptUtils;
 
 public class JoinService {
@@ -17,9 +18,21 @@ public class JoinService {
 
         String encryptedPassword = encrypt.getEncrypt(userDTO.getPassword(), salt);
         userDTO.setPassword(encryptedPassword);
-        userDTO.setUserStatus(1L);  // TODO: 2023-09-19 status 확인 필요
+        userDTO.setUserStatus(1L);
 
         int i = dao.insertUser(userDTO);
+        return i == 1;
+    }
+
+    public boolean saveUser2(UserDTOv userDTO) {
+        String salt = encrypt.getSalt();
+        userDTO.setSalt(salt);
+
+        String encryptedPassword = encrypt.getEncrypt(userDTO.getPassword(), salt);
+        userDTO.setEncrypedPassword(encryptedPassword);
+        userDTO.setUserStatus(1L);
+
+        int i = dao.insertUser2(userDTO);
         return i == 1;
     }
 
