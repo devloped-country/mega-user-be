@@ -27,11 +27,11 @@ public class UserDuplicateCheckController extends HttpServlet {
 
         UserDTO user = service.findUser(userDTO);
 
-        if (user != null) {
+        if (user == null) {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write("OK");
         } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write("NO");
         }
     }

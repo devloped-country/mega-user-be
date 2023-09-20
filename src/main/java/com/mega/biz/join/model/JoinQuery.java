@@ -1,8 +1,8 @@
 package com.mega.biz.join.model;
 
 public enum JoinQuery {
-    USER_INSERT("insert into user_test values(?, ?, ?, ?, ?, ?)"),
-    USER_FIND("select * from user_test where email = ?");
+    USER_INSERT("insert into user1 values(?, ?, ?, ?, ?, ?)"),
+    USER_FIND("select * from user1 where email = ?");
 
     private final String query;
 
