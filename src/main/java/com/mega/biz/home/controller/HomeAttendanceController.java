@@ -1,13 +1,13 @@
 package com.mega.biz.home.controller;
 
 import com.google.gson.Gson;
+import com.mega.biz.home.exception.NotDateContentException;
 import com.mega.biz.home.model.dto.HomeAttendanceDTO;
 import com.mega.biz.home.service.HomeService;
-import com.mega.common.controller.Controller;
 
+import com.mega.common.error.ErrorCode;
+import com.mega.common.error.ErrorStatus;
 import java.io.IOException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/home")
-public class HomeController extends HttpServlet {
+@WebServlet("/home/attendance")
+public class HomeAttendanceController extends HttpServlet {
 
   private final HomeService service = new HomeService();
   Gson gson = new Gson();
@@ -40,8 +40,18 @@ public class HomeController extends HttpServlet {
       }
     }
 
+    String result = null;
+    try {
     ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = service.getAttendanceStat(name, year, month);
-    String result = gson.toJson(homeAttendanceListDTO);
+      result = gson.toJson(homeAttendanceListDTO);
+    } catch(NotDateContentException e) {
+      ErrorStatus errorStatus = new ErrorStatus(ErrorCode.ERROR_CODE_FIRST.getErrorCode());
+
+      String error = gson.toJson(errorStatus);
+      response.setStatus(200);
+      response.getWriter().write(error);
+      return;
+    }
 
     response.setStatus(200);
     response.getWriter().write(result);
