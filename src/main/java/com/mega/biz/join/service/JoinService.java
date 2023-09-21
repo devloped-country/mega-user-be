@@ -1,8 +1,8 @@
 package com.mega.biz.join.service;
 
 import com.mega.biz.join.model.JoinDAO;
-import com.mega.biz.join.model.dto.UserDTOOriginal;
 import com.mega.biz.join.model.dto.UserDTO;
+import com.mega.biz.join.model.dto.UserValidationDTO;
 import com.mega.common.encrypt.EncryptUtils;
 
 public class JoinService {
@@ -11,32 +11,19 @@ public class JoinService {
 
     private final EncryptUtils encrypt = new EncryptUtils();
 
-
-//    public boolean saveUser(UserDTOOriginal userDTOOriginal) {
-//        String salt = encrypt.getSalt();
-//        userDTOOriginal.setSalt(salt);
-//
-//        String encryptedPassword = encrypt.getEncrypt(userDTOOriginal.getPassword(), salt);
-//        userDTOOriginal.setPassword(encryptedPassword);
-//        userDTOOriginal.setUserStatus(1L);
-//
-//        int i = dao.insertUser(userDTOOriginal);
-//        return i == 1;
-//    }
-
-    public boolean saveUser(UserDTO userDTO) {
+    public boolean saveUser(UserValidationDTO userValidationDTO) {
         String salt = encrypt.getSalt();
-        userDTO.setSalt(salt);
+        userValidationDTO.setSalt(salt);
 
-        String encryptedPassword = encrypt.getEncrypt(userDTO.getPassword(), salt);
-        userDTO.setEncrypedPassword(encryptedPassword);
-        userDTO.setUserStatus(1L);
+        String encryptedPassword = encrypt.getEncrypt(userValidationDTO.getPassword(), salt);
+        userValidationDTO.setEncrypedPassword(encryptedPassword);
+        userValidationDTO.setUserStatus(1L);
 
-        int i = dao.insertUser(userDTO);
+        int i = dao.insertUser(userValidationDTO);
         return i == 1;
     }
 
-    public UserDTOOriginal findUser(UserDTOOriginal userDTOOriginal) {
-        return dao.findUser(userDTOOriginal);
+    public UserDTO findUser(UserDTO userDTO) {
+        return dao.findUser(userDTO);
     }
 }

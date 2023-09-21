@@ -2,7 +2,7 @@ package com.mega.biz.join.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mega.biz.join.model.dto.UserDTO;
+import com.mega.biz.join.model.dto.UserValidationDTO;
 import com.mega.biz.join.model.UserDTODeserializer;
 import com.mega.biz.join.service.JoinService;
 import com.mega.common.controller.ControllerUtils;
@@ -26,20 +26,12 @@ public class JoinController extends HttpServlet {
 
         String body = ControllerUtils.getBody(request);
 
-//        Gson gson = new Gson();
-//        UserDTO userDTO = gson.fromJson(body, UserDTO.class);
-//        boolean flag = service.saveUser(userDTO);
-
-//        Gson gson = new Gson();
-//        UserDTOv userDTO = gson.fromJson(body, UserDTOv.class);
-//        boolean flag = service.saveUser2(userDTO);
-
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(UserDTO.class, new UserDTODeserializer());
+        gsonBuilder.registerTypeAdapter(UserValidationDTO.class, new UserDTODeserializer());
         Gson gson = gsonBuilder.create();
 
-        UserDTO userDTO = gson.fromJson(body, UserDTO.class);
-        boolean flag = service.saveUser(userDTO);
+        UserValidationDTO userValidationDTO = gson.fromJson(body, UserValidationDTO.class);
+        boolean flag = service.saveUser(userValidationDTO);
 
         if (flag) {
             response.setStatus(HttpServletResponse.SC_OK);
