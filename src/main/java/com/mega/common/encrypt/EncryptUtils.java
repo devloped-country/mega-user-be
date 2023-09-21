@@ -45,4 +45,26 @@ public class EncryptUtils {
 
         return result;
     }
+
+    public String getEncrypt(String pwd) {
+        String result = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+            md.update((pwd).getBytes());
+            byte[] pwdSalt = md.digest();
+
+            StringBuffer sb = new StringBuffer();
+            for (byte b : pwdSalt) {
+                sb.append(String.format("%02x", b));
+            }
+
+            result = sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
+    }
 }

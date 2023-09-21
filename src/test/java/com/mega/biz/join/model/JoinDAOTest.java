@@ -24,4 +24,16 @@ class JoinDAOTest {
         dao.insertAttendance(dto);
     }
 
+    @Test
+    void shaTest() {
+        UserValidationDTO dto = new UserValidationDTO();
+        dto.setEmail("ccc@ccc.com");
+        dto.setPassword("Test1234!");
+        dto.setName("bbbb");
+        dto.setPhone("01055933522");
+        dto.setUserStatus(1L);
+
+        dao.insertUser(dto);
+    }
+
 }
