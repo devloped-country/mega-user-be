@@ -21,6 +21,7 @@ public class HomeProfileController extends HttpServlet {
       HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String[] queries = request.getQueryString().split("=");
     String name = queries[1];
+    System.out.println(request.getAttribute("token"));
 
     ArrayList<HomeProfileDTO> homeProfileDTO = service.getHomeProfile(name);
 

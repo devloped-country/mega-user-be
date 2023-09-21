@@ -2,7 +2,9 @@ package com.mega.biz.login.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mega.biz.login.exception.AuthException;
 import com.mega.biz.login.model.dto.LoginDTO;
+import com.mega.biz.login.model.dto.TokenDTO;
 import com.mega.biz.login.service.LoginService;
 import com.mega.common.controller.ControllerUtils;
 import java.io.IOException;
@@ -26,11 +28,16 @@ public class LoginController extends HttpServlet {
 
     LoginDTO loginDTO = gson.fromJson(body, LoginDTO.class);
 
-    boolean isSuccess = service.authUser(loginDTO);
+    try {
+      TokenDTO tokenDTO = service.authUser(loginDTO);
+      String result = gson.toJson(tokenDTO);
 
-    if(isSuccess) {
       response.setStatus(200);
-
+      response.getWriter().write(result);
+      return;
+    } catch (AuthException e) {
+      response.setStatus(401);
+      response.getWriter().write("");
     }
   }
 }
