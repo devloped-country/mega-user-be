@@ -3,8 +3,7 @@ package com.mega.biz.join.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mega.biz.join.model.dto.UserDTO;
-import com.mega.biz.join.model.dto.UserDTOv;
-import com.mega.biz.join.model.dto.UserDTOvDeserializer;
+import com.mega.biz.join.model.UserDTODeserializer;
 import com.mega.biz.join.service.JoinService;
 import com.mega.common.controller.ControllerUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +35,11 @@ public class JoinController extends HttpServlet {
 //        boolean flag = service.saveUser2(userDTO);
 
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(UserDTOv.class, new UserDTOvDeserializer());
+        gsonBuilder.registerTypeAdapter(UserDTO.class, new UserDTODeserializer());
         Gson gson = gsonBuilder.create();
 
-        UserDTOv userDTO = gson.fromJson(body, UserDTOv.class);
-        boolean flag = service.saveUser2(userDTO);
+        UserDTO userDTO = gson.fromJson(body, UserDTO.class);
+        boolean flag = service.saveUser(userDTO);
 
         if (flag) {
             response.setStatus(HttpServletResponse.SC_OK);

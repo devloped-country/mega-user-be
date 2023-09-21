@@ -1,7 +1,7 @@
 package com.mega.biz.join.controller;
 
 import com.google.gson.Gson;
-import com.mega.biz.join.model.dto.UserDTO;
+import com.mega.biz.join.model.dto.UserDTOOriginal;
 import com.mega.biz.join.service.JoinService;
 import com.mega.common.controller.ControllerUtils;
 
@@ -23,9 +23,9 @@ public class UserDuplicateCheckController extends HttpServlet {
         String body = ControllerUtils.getBody(request);
 
         Gson gson = new Gson();
-        UserDTO userDTO = gson.fromJson(body, UserDTO.class);
+        UserDTOOriginal userDTOOriginal = gson.fromJson(body, UserDTOOriginal.class);
 
-        UserDTO user = service.findUser(userDTO);
+        UserDTOOriginal user = service.findUser(userDTOOriginal);
 
         if (user == null) {
             response.setStatus(HttpServletResponse.SC_OK);
