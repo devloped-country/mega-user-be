@@ -50,7 +50,7 @@ public class NoticeDAO {
                     noticeDTO.setTag_id("기타");
                 }
 
-                noticeDTO.setId(rs.getInt("ID"));
+                noticeDTO.setId(rs.getString("ID"));
                 noticeDTO.setTitle(rs.getString("TITLE"));
                 noticeDTO.setContent(rs.getString("CONTENT"));
                 noticeDTO.setAuthor(rs.getString("AUTHOR"));
@@ -68,19 +68,19 @@ public class NoticeDAO {
         return noticeList;
     }
 
-    public NoticeDTO getDetailNotice(int id) {
+    public NoticeDTO getDetailNotice(String id) {
         NoticeDTO noticeDTO = new NoticeDTO();
 
         try {
             conn = dataSource.getConnection();
             pstmt = conn.prepareStatement(NoticeQuery.DETAIL_NOTICE.getQuery());
-            pstmt.setInt(1, id);
+            pstmt.setString(1, id);
 
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
 
-                noticeDTO.setId(rs.getInt("ID"));
+                noticeDTO.setId(rs.getString("ID"));
                 noticeDTO.setTitle(rs.getString("TITLE"));
                 noticeDTO.setContent(rs.getString("CONTENT"));
                 noticeDTO.setAuthor(rs.getString("AUTHOR"));

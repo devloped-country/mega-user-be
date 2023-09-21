@@ -11,5 +11,5 @@ public class NoticeService {
 
     public List<NoticeDTO> getNoticeList() { return dao.getNoticeList(); }
 
-    public NoticeDTO getDetailList(int id) { return dao.getDetailNotice(id); }
+    public NoticeDTO getDetailList(String id) { return dao.getDetailNotice(id); }
 }

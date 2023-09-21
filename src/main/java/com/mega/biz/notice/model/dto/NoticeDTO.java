@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 public class NoticeDTO {
 
-    private int id;
+    private String id;
     private String tag_id;
     private String title;
     private String content;
