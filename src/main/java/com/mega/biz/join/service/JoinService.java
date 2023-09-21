@@ -20,6 +20,7 @@ public class JoinService {
         userValidationDTO.setUserStatus(1L);
 
         int i = dao.insertUser(userValidationDTO);
+        dao.insertAttendance(userValidationDTO);
         return i == 1;
     }
 

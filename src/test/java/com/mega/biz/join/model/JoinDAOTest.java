@@ -1,6 +1,7 @@
 package com.mega.biz.join.model;
 
 import com.mega.biz.join.model.dto.UserDTO;
+import com.mega.biz.join.model.dto.UserValidationDTO;
 import org.junit.jupiter.api.Test;
 
 class JoinDAOTest {
@@ -14,6 +15,13 @@ class JoinDAOTest {
         UserDTO user = dao.findUser(userDTO);
 
         System.out.println("user = " + user);
+    }
+
+    @Test
+    void insertAttendance() {
+        UserValidationDTO dto = new UserValidationDTO();
+        dto.setEmail("dcwang1@naver.com");
+        dao.insertAttendance(dto);
     }
 
 }
