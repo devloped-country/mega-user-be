@@ -1,5 +1,6 @@
 package com.mega.biz.login.model;
 
+import com.mega.biz.login.model.dto.AuthDTO;
 import com.mega.biz.login.model.dto.LoginDTO;
 import com.mega.biz.login.model.dto.TokenDTO;
 import com.mega.config.database.JDBCUtils;
@@ -76,12 +77,12 @@ public class LoginDAO {
     }
   }
 
-  public void updateRefresh(LoginDTO loginDTO, TokenDTO tokenDTO) {
+  public void updateRefresh(LoginDTO loginDTO, AuthDTO authDTO) {
     try {
       DataSource dataSource = JDBCUtils.getDataSource();
       conn = dataSource.getConnection();
       pstmt = conn.prepareStatement(LoginQuery.REFRESH_TOKEN_UPDATE.getQuery());
-      pstmt.setString(1, tokenDTO.getRefreshToken());
+      pstmt.setString(1, authDTO.getRefreshToken());
       pstmt.setString(2, loginDTO.getEmail());
       pstmt.executeUpdate();
     } catch (SQLException e) {

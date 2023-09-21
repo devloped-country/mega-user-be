@@ -90,7 +90,7 @@ public class HomeDAO {
         homeNoticeDTO.setId(rs.getInt("id"));
         homeNoticeDTO.setTagId(rs.getInt("tag_id"));
         homeNoticeDTO.setAuthor(rs.getString("author"));
-        homeNoticeDTO.setCreatedDate(rs.getTimestamp("created_date"));
+        homeNoticeDTO.setCreatedDate(rs.getTimestamp("createdDate"));
         homeNoticeDTO.setTitle(rs.getString("title"));
 
         homeNoticeListDTO.add(homeNoticeDTO);

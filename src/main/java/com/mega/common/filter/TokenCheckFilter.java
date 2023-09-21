@@ -1,43 +1,64 @@
-//package com.mega.common.filter;
-//
-//import com.google.gson.Gson;
-//import com.google.gson.stream.JsonToken;
-//import com.mega.biz.login.model.LoginDAO;
-//import com.mega.biz.login.model.dto.LoginDTO;
-//import com.mega.common.jwt.Jwt;
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.util.HashMap;
-//import java.util.Map;
-//import javax.servlet.Filter;
-//import javax.servlet.FilterChain;
-//import javax.servlet.ServletException;
-//import javax.servlet.ServletRequest;
-//import javax.servlet.ServletResponse;
-//import javax.servlet.annotation.WebFilter;
-//import javax.servlet.http.HttpFilter;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//@WebFilter(urlPatterns = {"/home/profile", "/home/attendance", "/home/curriculum", "/home/notice"})
-//public class TokenCheckFilter extends HttpFilter implements Filter {
-//
-//  private final static int TOKEN_INDEX = 1;
-//  private final static int ONE_DAY = 86400000;
-//  LoginDAO dao = new LoginDAO();
-//
-//  @Override
-//  public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-//      throws IOException, ServletException {
-//    HttpServletRequest request = (HttpServletRequest) req;
-//    HttpServletResponse response = (HttpServletResponse) res;
-//
-//    String[] authorization = request.getHeader("Authorization").split(" ");
-//    String tokenKind = request.getHeader("Token-Kind");
-//
-//    String token = authorization[TOKEN_INDEX];
-//    Gson gson = new Gson();
-//
+package com.mega.common.filter;
+
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonToken;
+import com.mega.biz.login.exception.TokenException;
+import com.mega.biz.login.model.LoginDAO;
+import com.mega.biz.login.model.dto.AuthDTO;
+import com.mega.biz.login.model.dto.LoginDTO;
+import com.mega.common.jwt.Jwt;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebFilter(urlPatterns = {"/home/profile", "/home/attendance", "/home/curriculum", "/home/notice"})
+public class TokenCheckFilter extends HttpFilter implements Filter {
+
+  private final static int TOKEN_INDEX = 1;
+  private final static int ONE_DAY = 86400000;
+  LoginDAO dao = new LoginDAO();
+
+  @Override
+  public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+      throws IOException, ServletException {
+    HttpServletRequest request = (HttpServletRequest) req;
+    HttpServletResponse response = (HttpServletResponse) res;
+
+    String[] authorization = request.getHeader("Authorization").split(" ");
+    String tokenKind = request.getHeader("Token-Kind");
+
+    String token = authorization[TOKEN_INDEX];
+    AuthDTO authDTO = new AuthDTO();
+
+    try {
+
+      if (tokenKind.equals("access") && Jwt.validateIssuer(token)) {
+        authDTO.setStatusCode(1);
+      } else if (tokenKind.equals("refresh") && Jwt.validateIssuer(token)) {
+        authDTO.setStatusCode(2);
+      }
+    } catch (TokenException e) {
+      if (tokenKind.equals("access")) {
+        authDTO.setStatusCode(-1);
+      } else if (tokenKind.equals("refresh")) {
+        authDTO.setStatusCode(-2);
+      }
+    }
+
+    request.setAttribute("code", authDTO);
+    chain.doFilter(request, response);
+  }
+
 //    try {
 //      if (tokenKind.equals("access") && Jwt.validateIssuer(token) && Jwt.validateToken(token)) {
 //        response.setStatus(201);
@@ -73,7 +94,6 @@
 //      response.getWriter().write("");
 //      return;
 //    }
-//
-//    chain.doFilter(request, response);
-//  }
-//}
+
+//    chain.doFilter(request,response);
+}
