@@ -1,8 +1,8 @@
 package com.mega.biz.join.model.dto;
 
-import com.mega.biz.join.model.domain.Email;
-import com.mega.biz.join.model.domain.Password;
-import com.mega.biz.join.model.domain.Phone;
+import com.mega.biz.join.model.dto.validationField.Email;
+import com.mega.biz.join.model.dto.validationField.Password;
+import com.mega.biz.join.model.dto.validationField.Phone;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

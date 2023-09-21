@@ -1,21 +1,14 @@
-package com.mega.biz.join.model.domain;
+package com.mega.biz.join.validator;
 
-import lombok.Getter;
+import com.mega.common.validator.ValidatorV2;
 
-@Getter
-public class Password {
+public class PasswordValidator implements ValidatorV2 {
 
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final int MAX_PASSWORD_LENGTH = 16;
 
-    private final String password;
-
-    public Password(String password) {
-        validate(password);
-        this.password = password;
-    }
-
-    private void validate(String password) {
+    @Override
+    public void validate(String password) {
         if (password == null || isBlank(password)) {
             throw new IllegalArgumentException("비밀번호를 입력하지 않았습니다.");
         }
@@ -25,6 +18,7 @@ public class Password {
         if (isInvalidPassword(password)) {
             throw new IllegalArgumentException("대소문자, 숫자, 특수문자를 사용해 주세요");
         }
+
     }
 
     private boolean isInvalidPasswordLength(String password) {
