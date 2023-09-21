@@ -29,16 +29,24 @@ public class JoinController extends HttpServlet {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(UserValidationDTO.class, new UserDTODeserializer());
         Gson gson = gsonBuilder.create();
+        boolean flag = false;
 
-        UserValidationDTO userValidationDTO = gson.fromJson(body, UserValidationDTO.class);
-        boolean flag = service.saveUser(userValidationDTO);
+        try {
+            UserValidationDTO userValidationDTO = gson.fromJson(body, UserValidationDTO.class);
+            flag = service.saveUser(userValidationDTO);
+        } catch (IllegalArgumentException e) {
+            String message = e.getMessage();
+            log.info("[error message] : {}", message);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write(message + "\n");
+        }
 
         if (flag) {
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().write("OK");
             log.info("{}", "success");
         } else {
-            response.setStatus(HttpServletResponse.SC_OK);
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("NO");
             log.info("{}", "fail");
         }
