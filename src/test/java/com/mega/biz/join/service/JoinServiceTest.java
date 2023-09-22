@@ -12,8 +12,8 @@ class JoinServiceTest {
     @Test
     void insertV2() {
         UserValidationDTO userValidationDTO = new UserValidationDTO();
-        userValidationDTO.setEmail("aaaa@naver.com");
-        userValidationDTO.setPassword("Cksgus892201*");
+        userValidationDTO.setEmail("ccc@ccc.com");
+        userValidationDTO.setPassword("Test1234!");
         userValidationDTO.setName("테스트");
         userValidationDTO.setPhone("01055933522");
 

@@ -16,6 +16,24 @@ public class JoinDAO {
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
 
+    public void insertAttendance(UserValidationDTO userValidationDTO) {
+
+        try {
+            DataSource dataSource = JDBCUtils.getDataSource();
+            conn = dataSource.getConnection();
+            pstmt = conn.prepareStatement(JoinQuery.INSERT_ATTENDANCE.getQuery());
+
+            pstmt.setString(1, userValidationDTO.getEmail());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // ResultSet이 없을 때 close
+            JDBCUtils.close(conn, pstmt);
+        }
+    }
+
     public UserDTO findUser(UserDTO userDTO) {
         try {
             DataSource dataSource = JDBCUtils.getDataSource();

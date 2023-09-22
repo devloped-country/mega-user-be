@@ -1,19 +1,10 @@
-package com.mega.biz.join.model.domain;
+package com.mega.biz.join.validator;
 
-import lombok.Getter;
+import com.mega.common.validator.ValidatorV2;
 
-@Getter
-public class Phone {
-
-    private final String phone;
-
-
-    public Phone(String phone) {
-        validate(phone);
-        this.phone = phone;
-    }
-
-    private void validate(String phone) {
+public class PhoneValidator implements ValidatorV2 {
+    @Override
+    public void validate(String phone) {
         if (phone == null || isBlank(phone)) {
             throw new IllegalArgumentException("휴대폰번호를 입력하지 않았습니다.");
         }

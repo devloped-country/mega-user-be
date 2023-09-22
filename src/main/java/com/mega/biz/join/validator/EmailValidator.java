@@ -1,22 +1,14 @@
-package com.mega.biz.join.model.domain;
+package com.mega.biz.join.validator;
 
-
-import lombok.Getter;
+import com.mega.common.validator.ValidatorV2;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Getter
-public class Email {
+public class EmailValidator implements ValidatorV2 {
 
-    private final String email;
-
-    public Email(String email) {
-        validate(email);
-        this.email = email;
-    }
-
-    private void validate(String email) {
+    @Override
+    public void validate(String email) {
         if (email == null || isBlank(email)) {
             throw new IllegalArgumentException("Email을 입력하지 않았습니다.");
         }

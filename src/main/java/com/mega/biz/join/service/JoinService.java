@@ -15,11 +15,14 @@ public class JoinService {
         String salt = encrypt.getSalt();
         userValidationDTO.setSalt(salt);
 
-        String encryptedPassword = encrypt.getEncrypt(userValidationDTO.getPassword(), salt);
+        String hashedPassword = encrypt.getEncrypt(userValidationDTO.getPassword());
+
+        String encryptedPassword = encrypt.getEncrypt(hashedPassword, salt);
         userValidationDTO.setEncrypedPassword(encryptedPassword);
         userValidationDTO.setUserStatus(1L);
 
         int i = dao.insertUser(userValidationDTO);
+        dao.insertAttendance(userValidationDTO);
         return i == 1;
     }
 
