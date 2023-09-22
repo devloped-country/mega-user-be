@@ -1,11 +1,8 @@
 package com.mega.common.jwt;
 
-import com.mega.biz.login.exception.AuthException;
 import com.mega.biz.login.exception.TokenException;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
