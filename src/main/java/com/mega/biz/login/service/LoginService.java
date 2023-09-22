@@ -24,7 +24,7 @@ public class LoginService {
 
     AuthDTO authDTO = new AuthDTO();
 
-    String accessToken = Jwt.create(dto.getEmail(), dto.getName(), 6000000);
+    String accessToken = Jwt.create(dto.getEmail(), dto.getName(), 1);
     authDTO.setAccessToken(accessToken);
 
     String refreshToken = Jwt.create(dto.getEmail(), dto.getName(), 3600000 * 24 * 14);

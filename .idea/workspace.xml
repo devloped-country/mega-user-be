@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bcb8053-c16c-4b98-a0dd-3017abd1b7e7" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/exception/TokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/model/dto/AuthDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/auth/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/auth/model/AuthDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/auth/model/AuthQuery.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/auth/model/dto/AuthDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/auth/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/curriculum/controller/CurriculumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/curriculum/controller/CurriculumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/home/controller/HomeProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/home/controller/HomeProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/home/model/HomeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/home/model/HomeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/home/model/HomeQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/home/model/HomeQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/model/LoginDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/model/LoginDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/model/LoginQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/model/LoginQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/model/dto/AuthDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/model/dto/AuthDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/login/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/common/filter/TokenCheckFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/common/filter/TokenCheckFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/common/filter/TokenCheckFilter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/common/jwt/Jwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/common/jwt/Jwt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/config/database/JDBCUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/config/database/JDBCUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -52,25 +55,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature-login-auth&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/uBeom/Documents/ub/board-vue-be&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDK&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.24482758&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feature-login-auth",
+    "last_opened_file_path": "C:/Users/uBeom/Documents/ub/board-vue-be",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDK",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.24482758",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.mega.biz.login.exception" />
@@ -94,7 +97,7 @@
       <option name="tomcatInfo">
         <TomcatInfo>
           <option name="name" value="Apache Tomcat/9.0.79" />
-          <option name="path" value="$USER_HOME$/Downloads/apache-tomcat-9.0.79" />
+          <option name="path" value="$PROJECT_DIR$/../../../../../apache-tomcat-9.0.79" />
           <option name="version" value="9.0.79.0" />
         </TomcatInfo>
       </option>
@@ -116,6 +119,8 @@
       <workItem from="1695130848236" duration="481000" />
       <workItem from="1695131336723" duration="2559000" />
       <workItem from="1695276001216" duration="18658000" />
+      <workItem from="1695337930147" duration="86000" />
+      <workItem from="1695338029854" duration="19781000" />
     </task>
     <servers />
   </component>

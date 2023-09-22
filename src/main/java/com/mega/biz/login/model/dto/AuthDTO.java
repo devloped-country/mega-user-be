@@ -28,4 +28,7 @@ public class AuthDTO {
   public void setRefreshToken(String refreshToken) {
     this.refreshToken = refreshToken;
   }
+
+  public void setRefresh(String newRefreshToken) {
+  }
 }
