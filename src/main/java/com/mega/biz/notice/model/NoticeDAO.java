@@ -54,7 +54,7 @@ public class NoticeDAO {
                 noticeDTO.setTitle(rs.getString("TITLE"));
                 noticeDTO.setContent(rs.getString("CONTENT"));
                 noticeDTO.setAuthor(rs.getString("AUTHOR"));
-                noticeDTO.setCreatedDate(rs.getString("CREATED_DATE"));
+                noticeDTO.setCreatedDate(rs.getString("CREATEDDATE"));
 
                 noticeList.add(noticeDTO);
             }
@@ -84,7 +84,7 @@ public class NoticeDAO {
                 noticeDTO.setTitle(rs.getString("TITLE"));
                 noticeDTO.setContent(rs.getString("CONTENT"));
                 noticeDTO.setAuthor(rs.getString("AUTHOR"));
-                noticeDTO.setCreatedDate(rs.getString("CREATED_DATE"));
+                noticeDTO.setCreatedDate(rs.getString("CREATEDDATE"));
                 noticeDTO.setTag_id(rs.getString("TAG_ID"));
             }
 
