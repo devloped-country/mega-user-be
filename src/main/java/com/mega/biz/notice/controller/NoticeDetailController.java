@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/noticeDetail/*")
+@WebServlet("/notice/*")
 public class NoticeDetailController extends HttpServlet {
 
     private final NoticeService service = new NoticeService();
@@ -19,7 +19,9 @@ public class NoticeDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getHeader("id");
+
+        String[] queries = request.getRequestURI().split("/");
+        String id = queries[2];
 
         NoticeDTO noticeDTO = service.getDetailList(id);
 
