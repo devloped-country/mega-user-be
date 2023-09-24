@@ -4,7 +4,10 @@ import com.mega.biz.login.exception.TokenException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 
 public class Jwt {

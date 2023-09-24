@@ -2,8 +2,10 @@ package com.mega.biz.auth.controller;
 
 import com.google.gson.Gson;
 import com.mega.biz.auth.model.dto.AuthDTO;
+import com.mega.biz.auth.model.dto.TokenDTO;
 import com.mega.biz.auth.service.AuthService;
 import com.mega.biz.login.exception.TokenException;
+import com.mega.common.controller.ControllerUtils;
 import com.mega.common.jwt.Jwt;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,16 +21,18 @@ public class AuthController extends HttpServlet {
   private final static int TOKEN_INDEX = 1;
   private final static int ONE_DAY = 86400000;
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     String[] queries = req.getHeader("Authorization").split("Bearer ");
-    String tokenKind = req.getHeader("Token-Kind");
+
+    String body = ControllerUtils.getBody(req);
+    Gson gson = new Gson();
+    TokenDTO kindDTO = gson.fromJson(body, TokenDTO.class);
     String token = queries[TOKEN_INDEX];
 
     AuthDTO authDTO = new AuthDTO();
-    Gson gson = new Gson();
 
-    if(tokenKind.equals("access")) {
+    if(kindDTO.getKind().equals("access")) {
       try {
         service.validateAccessToken(token);
         resp.setStatus(200);
@@ -39,7 +43,7 @@ public class AuthController extends HttpServlet {
 //        resp.getWriter().write(json);
         resp.getWriter().write("");
       }
-    } else if(tokenKind.equals("refresh")) {
+    } else if(kindDTO.getKind().equals("refresh")) {
       try {
         String email = Jwt.getTokenInnerEmail(token);
         String name = Jwt.getTokenInnerName(token);

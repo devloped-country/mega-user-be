@@ -5,11 +5,13 @@ import com.mega.biz.qr.exception.QrException;
 import com.mega.biz.qr.exception.ReAuthException;
 import com.mega.biz.qr.model.dto.QrDTO;
 import com.mega.common.controller.Controller;
+import com.mega.common.controller.ControllerUtils;
 import com.mega.common.controller.HandlerMapping;
 import com.mega.common.controller.ViewResolver;
 
 import com.mega.common.error.ErrorCode;
 import com.mega.common.error.ErrorStatus;
+import java.net.URLDecoder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,8 +38,8 @@ public class QrDispatcherServlet extends HttpServlet {
       throws ServletException, IOException {
     String uri = request.getRequestURI();
     String[] qrString = request.getQueryString().split("=");
-    String qr = qrString[QR_QUERY_STRING_INDEX];
-
+    String[] qrs = qrString[QR_QUERY_STRING_INDEX].split("&");
+    String qr = qrs[0];
     String path = uri.substring(uri.lastIndexOf("/"));
     Controller ctrl = handlerMapping.getController(path);
     Gson gson = new Gson();
@@ -46,7 +48,8 @@ public class QrDispatcherServlet extends HttpServlet {
       response.setStatus(404);
       response.getWriter().write("");
     }
-
+    System.out.println(qr + "qr임다");
+    request.setAttribute("email", URLDecoder.decode(qrString[2]));
     request.setAttribute("qr", qr);
 
     try {
