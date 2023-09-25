@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="8bcb8053-c16c-4b98-a0dd-3017abd1b7e7" name="변경" comment="">
     <list default="true" id="fb0f6f66-8028-4679-b81b-823a43b9eeb1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/join/model/JoinQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/join/model/JoinQuery.java" afterDir="false" />
@@ -23,6 +24,41 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2VcMK1Z63sYufu8u8QjxCbwAfpT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "fix-sh",
+    "last_opened_file_path": "C:/Users/user/Desktop/workplace/mega/mega-admin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDK",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.24482758",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.mega.biz.login.exception" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="tomcatRun" type="com.poratu.idea.plugins.tomcat">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
@@ -30,6 +66,7 @@
       <predefined_log_file id="Tomcat Catalina Log" />
       <predefined_log_file id="Tomcat Manager Log" />
       <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="adminPort" value="8006" />
       <option name="contextPath" value="/" />
       <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
       <option name="envOptions">
@@ -39,6 +76,8 @@
       <option name="port" value="8081" />
       <option name="tomcatInfo">
         <TomcatInfo>
+          <option name="name" value="Apache Tomcat/9.0.79 (3)" />
+          <option name="path" value="$PROJECT_DIR$/../../../../../../Program Files/apache-tomcat-9.0.79" />
           <option name="name" value="Apache Tomcat/9.0.79" />
           <option name="path" value="$PROJECT_DIR$/../../../../Program Files/Apache Software Foundation/Tomcat 9.0" />
           <option name="version" value="9.0.79.0" />
