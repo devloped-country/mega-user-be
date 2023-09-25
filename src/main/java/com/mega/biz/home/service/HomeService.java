@@ -16,8 +16,8 @@ public class HomeService {
 
   HomeDAO dao = new HomeDAO();
 
-  public ArrayList<HomeAttendanceDTO> getAttendanceStat(String name, String year, String month) throws NotDateContentException {
-    ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = dao.selectAttendnaceStat(name, year, month);
+  public ArrayList<HomeAttendanceDTO> getAttendanceStat(String token, String year, String month) throws NotDateContentException {
+    ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = dao.selectAttendnaceStat(token, year, month);
 
     if(homeAttendanceListDTO.size() == 0) {
       throw new NotDateContentException();
@@ -109,8 +109,8 @@ public class HomeService {
     return homeNoticeListDTO;
   }
 
-  public ArrayList<HomeProfileDTO> getHomeProfile(String name) {
+  public ArrayList<HomeProfileDTO> getHomeProfile(String token) {
     int duration = dao.selectDuration();
-    return dao.selectProfileAttendance(name, duration);
+    return dao.selectProfileAttendance(token, duration);
   }
 }

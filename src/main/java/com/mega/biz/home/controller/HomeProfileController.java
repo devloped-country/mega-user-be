@@ -24,9 +24,9 @@ public class HomeProfileController extends HttpServlet {
   protected void doGet(
       HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     String[] queries = request.getQueryString().split("=");
-    String name = queries[1];
+    String token = queries[1];
 
-    ArrayList<HomeProfileDTO> homeProfileDTO = service.getHomeProfile(name);
+    ArrayList<HomeProfileDTO> homeProfileDTO = service.getHomeProfile(token);
 
     String result = gson.toJson(homeProfileDTO);
 

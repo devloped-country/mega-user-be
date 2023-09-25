@@ -5,20 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bcb8053-c16c-4b98-a0dd-3017abd1b7e7" name="변경" comment="">
+    <list default="true" id="fb0f6f66-8028-4679-b81b-823a43b9eeb1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mega/biz/join/model/JoinQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mega/biz/join/model/JoinQuery.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +60,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="mega" type="com.poratu.idea.plugins.tomcat">
+    <configuration name="tomcatRun" type="com.poratu.idea.plugins.tomcat">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
       <predefined_log_file enabled="true" id="Tomcat Access Log" />
       <predefined_log_file id="Tomcat Catalina Log" />
@@ -84,6 +78,8 @@
         <TomcatInfo>
           <option name="name" value="Apache Tomcat/9.0.79 (3)" />
           <option name="path" value="$PROJECT_DIR$/../../../../../../Program Files/apache-tomcat-9.0.79" />
+          <option name="name" value="Apache Tomcat/9.0.79" />
+          <option name="path" value="$PROJECT_DIR$/../../../../Program Files/Apache Software Foundation/Tomcat 9.0" />
           <option name="version" value="9.0.79.0" />
         </TomcatInfo>
       </option>
@@ -94,34 +90,7 @@
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="8bcb8053-c16c-4b98-a0dd-3017abd1b7e7" name="변경" comment="" />
-      <created>1695130847155</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1695130847155</updated>
-      <workItem from="1695130848236" duration="481000" />
-      <workItem from="1695131336723" duration="2559000" />
-      <workItem from="1695276001216" duration="18658000" />
-      <workItem from="1695337930147" duration="86000" />
-      <workItem from="1695338029854" duration="19781000" />
-      <workItem from="1695540574059" duration="2100000" />
-      <workItem from="1695544251382" duration="3589000" />
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="com.poratu.idea.plugins.tomcat">
-        <watch expression="password" />
-        <watch expression="inputPassword" />
-        <watch expression="inputPassword" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

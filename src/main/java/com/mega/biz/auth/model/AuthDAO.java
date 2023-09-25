@@ -24,4 +24,27 @@ public class AuthDAO {
       JDBCUtils.close(conn, pstmt, rs);
     }
   }
+
+  public String selectName(String token) {
+    String name = null;
+
+    try {
+      DataSource dataSource = JDBCUtils.getDataSource();
+      conn = dataSource.getConnection();
+      pstmt = conn.prepareStatement(AuthQuery.USER_NAME_SELECT.getQuery());
+      pstmt.setString(1, token);
+      rs = pstmt.executeQuery();
+
+      if(rs.next()) {
+        name = rs.getString("name");
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      JDBCUtils.close(conn, pstmt, rs);
+    }
+
+    return name;
+  }
 }
