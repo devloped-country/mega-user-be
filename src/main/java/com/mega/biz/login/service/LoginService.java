@@ -34,4 +34,8 @@ public class LoginService {
 
     return authDTO;
   }
+
+  public LoginDTO checkUserPermission(LoginDTO loginDTO) {
+      return dao.selectUserPermission(loginDTO);
+  }
 }

@@ -22,16 +22,24 @@ public class LoginController extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     String body = ControllerUtils.getBody(request);
 
     GsonBuilder gsonBuilder = new GsonBuilder();
     Gson gson = gsonBuilder.create();
 
     LoginDTO loginDTO = gson.fromJson(body, LoginDTO.class);
-
     try {
       AuthDTO authDTO = service.authUser(loginDTO);
       String result = gson.toJson(authDTO);
+
+      LoginDTO dto = service.checkUserPermission(loginDTO);
+
+      if(dto.getStatus() == 1) {
+        response.setStatus(403);
+        response.getWriter().write("");
+        return;
+      }
 
       response.setStatus(200);
       response.getWriter().write(result);

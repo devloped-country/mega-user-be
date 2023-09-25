@@ -5,7 +5,7 @@ public enum HomeQuery {
   CURRICULUM_RECENT_SELECT("select id, subject, start_date, end_date from curriculum where end_date >= CURDATE() order by start_date desc limit 5"),
   NOTICE_RECENT_SELECT("select * from notice2 order by created_date desc limit 5"),
   ATTENDANCE_DURATION_SELECT("select duration from attendance_duration"),
-  ATTENDANCE_STAT_DURATION_SELECT("select count(attendance_stat) as attendance_count from attendance inner join user3 on attendance.email = user3.email where refresh=? and attendance_stat=? and end_date between ? and CURDATE()");
+  ATTENDANCE_STAT_DURATION_SELECT("select count(attendance_stat) as attendance_count from attendance2 inner join user3 on attendance2.email = user3.email where refresh=? and attendance_stat=? and end_date between ? and CURDATE() + INTERVAL 1 DAY");
 
   private final String query;
 
