@@ -40,6 +40,8 @@ public class QrDispatcherServlet extends HttpServlet {
     String[] qrString = request.getQueryString().split("=");
     String[] qrs = qrString[QR_QUERY_STRING_INDEX].split("&");
     String qr = qrs[0];
+    System.out.println(request.getMethod());
+    System.out.println("요청들어옴");
     String path = uri.substring(uri.lastIndexOf("/"));
     Controller ctrl = handlerMapping.getController(path);
     Gson gson = new Gson();
