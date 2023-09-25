@@ -25,14 +25,14 @@ public class HomeAttendanceController extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     String[] parts = request.getQueryString().split("&");
-    String name = null;
+    String token = null;
     String year = null;
     String month = null;
 
     for(String part : parts) {
       String[] queries = part.split("=");
-      if(queries[0].equals("name")) {
-        name = queries[1];
+      if(queries[0].equals("token")) {
+        token = queries[1];
       } else if(queries[0].equals("year")) {
         year = queries[1];
       } else if(queries[0].equals("month")) {
@@ -42,7 +42,7 @@ public class HomeAttendanceController extends HttpServlet {
 
     String result = null;
     try {
-    ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = service.getAttendanceStat(name, year, month);
+    ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = service.getAttendanceStat(token, year, month);
       result = gson.toJson(homeAttendanceListDTO);
     } catch(NotDateContentException e) {
       ErrorStatus errorStatus = new ErrorStatus(ErrorCode.ERROR_CODE_FIRST.getErrorCode());

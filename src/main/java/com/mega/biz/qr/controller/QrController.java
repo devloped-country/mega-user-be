@@ -16,9 +16,10 @@ public class QrController implements Controller {
     @Override
     public Object handleRequest(HttpServletRequest request, HttpServletResponse response)  throws ReAuthException, QrException {
         String qr = request.getAttribute("qr").toString();
-        String email = request.getHeader("email");
-
-        QrDTO dto = new QrDTO(qr, email);
+        System.out.println(qr + "2번째 qr임다.");
+        QrDTO qrDTO = new QrDTO();
+        qrDTO.setEmail(request.getAttribute("email").toString());
+        QrDTO dto = new QrDTO(qr, qrDTO.getEmail());
 
         return service.authQr(dto);
     }

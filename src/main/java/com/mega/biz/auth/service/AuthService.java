@@ -1,6 +1,7 @@
 package com.mega.biz.auth.service;
 
 import com.mega.biz.auth.model.AuthDAO;
+import com.mega.biz.auth.model.dto.NameDTO;
 import com.mega.biz.login.exception.TokenException;
 import com.mega.biz.auth.model.dto.AuthDTO;
 import com.mega.common.jwt.Jwt;
@@ -26,5 +27,13 @@ public class AuthService {
 
   public void updateRefresh(String newRefreshToken, String email) {
     dao.updateRefresh(newRefreshToken, email);
+  }
+
+  public NameDTO getName(String refreshToken) {
+    NameDTO nameDTO = new NameDTO();
+
+    nameDTO.setName(dao.selectName(refreshToken));
+
+    return nameDTO;
   }
 }

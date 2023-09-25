@@ -22,13 +22,13 @@ public class HomeDAO {
   private PreparedStatement pstmt = null;
   private ResultSet rs = null;
 
-  public ArrayList<HomeAttendanceDTO> selectAttendnaceStat(String name, String year, String month) {
+  public ArrayList<HomeAttendanceDTO> selectAttendnaceStat(String token, String year, String month) {
     ArrayList<HomeAttendanceDTO> homeAttendanceListDTO = new ArrayList<>();
 
     try {
       conn = dataSource.getConnection();
       pstmt = conn.prepareStatement(HomeQuery.ATTENDANCE_STAT_SELECT.getQuery());
-      pstmt.setString(1, name);
+      pstmt.setString(1, token);
       pstmt.setString(2, year);
       pstmt.setString(3, month);
       rs = pstmt.executeQuery();
@@ -90,7 +90,7 @@ public class HomeDAO {
         homeNoticeDTO.setId(rs.getInt("id"));
         homeNoticeDTO.setTagId(rs.getInt("tag_id"));
         homeNoticeDTO.setAuthor(rs.getString("author"));
-        homeNoticeDTO.setCreatedDate(rs.getTimestamp("createdDate"));
+        homeNoticeDTO.setCreatedDate(rs.getTimestamp("created_date"));
         homeNoticeDTO.setTitle(rs.getString("title"));
 
         homeNoticeListDTO.add(homeNoticeDTO);
@@ -124,7 +124,7 @@ public class HomeDAO {
     return duration;
   }
 
-  public ArrayList<HomeProfileDTO> selectProfileAttendance(String name, int duration) {
+  public ArrayList<HomeProfileDTO> selectProfileAttendance(String token, int duration) {
     ArrayList<HomeProfileDTO> homeProfileListDTO = new ArrayList<>();
 
     for(int i=2; i<8; i++) {
@@ -134,7 +134,7 @@ public class HomeDAO {
         conn = dataSource.getConnection();
         pstmt = conn.prepareStatement(HomeQuery.ATTENDANCE_STAT_DURATION_SELECT.getQuery());
 
-        pstmt.setString(1, name);
+        pstmt.setString(1, token);
         pstmt.setInt(2, i);
         pstmt.setString(3, String.valueOf(
             LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), duration)));

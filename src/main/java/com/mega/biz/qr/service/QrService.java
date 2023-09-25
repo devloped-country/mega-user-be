@@ -12,6 +12,9 @@ public class QrService {
   public QrDTO authQr(QrDTO qrDTO) throws ReAuthException, QrException {
     String redisQr = dao.selectQr().getQr();
 
+    System.out.println(qrDTO.getQr() + "!");
+    System.out.println(redisQr);
+
     if (!qrDTO.getQr().equals(redisQr)) {
       throw new QrException();
     }
