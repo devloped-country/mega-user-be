@@ -136,8 +136,8 @@ public class HomeDAO {
         pstmt.setString(1, token);
         pstmt.setInt(2, i);
         pstmt.setString(3, String.valueOf(
-            LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), duration)));
-
+            LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().minus(1), duration + 1)));
+        pstmt.setString(4, String.valueOf(LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), duration)));
         rs = pstmt.executeQuery();
 
         if (rs.next()) {
