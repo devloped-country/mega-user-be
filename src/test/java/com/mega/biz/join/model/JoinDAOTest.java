@@ -13,8 +13,6 @@ class JoinDAOTest {
         UserDTO userDTO = new UserDTO();
         userDTO.setEmail("dcwang100@naver.com");
         UserDTO user = dao.findUser(userDTO);
-
-        System.out.println("user = " + user);
     }
 
     @Test

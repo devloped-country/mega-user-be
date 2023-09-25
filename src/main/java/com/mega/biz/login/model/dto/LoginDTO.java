@@ -6,6 +6,15 @@ public class LoginDTO {
   private String salt;
   private String name;
   private String refresh;
+  private int status;
+
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
+  }
 
   public String getRefresh() {
     return refresh;

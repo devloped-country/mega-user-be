@@ -133,7 +133,6 @@ public class HomeDAO {
 
         conn = dataSource.getConnection();
         pstmt = conn.prepareStatement(HomeQuery.ATTENDANCE_STAT_DURATION_SELECT.getQuery());
-
         pstmt.setString(1, token);
         pstmt.setInt(2, i);
         pstmt.setString(3, String.valueOf(

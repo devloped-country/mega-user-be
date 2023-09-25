@@ -54,4 +54,26 @@ public class LoginDAO {
       JDBCUtils.close(conn, pstmt, rs);
     }
   }
+
+  public LoginDTO selectUserPermission(LoginDTO loginDTO) {
+    LoginDTO dto = new LoginDTO();
+
+    try {
+      DataSource dataSource = JDBCUtils.getDataSource();
+      conn = dataSource.getConnection();
+      pstmt = conn.prepareStatement(LoginQuery.USER_PERMISSION_SELECT.getQuery());
+      pstmt.setString(1, loginDTO.getEmail());
+      rs = pstmt.executeQuery();
+
+      if(rs.next()) {
+        dto.setStatus(rs.getInt("user_status"));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      JDBCUtils.close(conn, pstmt, rs);
+    }
+
+    return dto;
+  }
 }
