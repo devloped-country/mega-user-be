@@ -135,13 +135,22 @@ public class HomeDAO {
         pstmt = conn.prepareStatement(HomeQuery.ATTENDANCE_STAT_DURATION_SELECT.getQuery());
         pstmt.setString(1, token);
         pstmt.setInt(2, i);
+
+
+        int startDuration;
+        if(duration + 1 > YearMonth.of(LocalDate.now().getYear(), LocalDate.now().getMonth().minus(1)).lengthOfMonth()) {
+          startDuration = 1;
+        } else {
+          startDuration = duration + 1;
+        }
+
         pstmt.setString(3, String.valueOf(
-            LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().minus(1), duration + 1)));
+            LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().minus(1), startDuration  )));
         pstmt.setString(4, String.valueOf(LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), duration)));
         rs = pstmt.executeQuery();
 
         if (rs.next()) {
-          homeProfileDTO.setAttendanceCount(rs.getInt("attendance_count"));
+            homeProfileDTO.setAttendanceCount(rs.getInt("attendance_count"));
         }
 
         homeProfileListDTO.add(homeProfileDTO);
